@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/js/bootstrap.min.js">
+    <!-- <script src="js/addNewInput.js"></script> -->
+    <script src="js/script.js"></script>
+</head>
+<body>
+     <div class="col-12">
+        <div class="row">
+            <div class="col-12">
+                <form>
+                    <div class="form-group">
+                        <form action="upload.php" method="POST" enctype="multipart/form-data">
+                            <input type="file" name='file[]' multiple>
+                            <input type='submit' name='upload'>
+                        </form>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <h3>Key</h3>
+                <div class="form-group">
+                    <form id="keys">
+
+                    </form>
+                </div>
+            </div>
+            <div class="col-3">
+                <h3>English</h3>
+                <div class="form-group">
+                    <form id="val">
+
+                    </form>
+                </div>
+            </div>
+            <div class="col-3">
+                <h3>Myanmar-Unicode</h3>
+                <div class="form-group">
+                    <form id="valUnicode">
+
+                    </form>
+                </div>
+            </div>
+            <div class="col-3">
+                <h3>Myanmar-Zawgyi</h3>
+                <div class="form-group">
+                    <form id="valZawgyi">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-3">
+                        <button class="btn btn-primary" id="btnAdd" type="button">
+                            Add New Line
+                        </button>
+                        <input type="text" id='key-name' placeholder="Please Enter Keys">
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-primary" id="btn" type="button">
+                            Click to generate JSON file
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
