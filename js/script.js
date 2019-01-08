@@ -48,17 +48,12 @@ function download(filename, text) {
   document.body.removeChild(element);
 }
 
-
-/*
-  var val = loadJSON(function(response){
-    var actual_JSON = JSON.parse(response);
-    console.log(typeof(actual_JSON));
-  });
-*/
 // to load JSON data to textBox
 // for key
 loadJSON(function(response) {
-    var actual_JSON = JSON.parse(response);
+    var actual_JSON = {};
+    console.log(actual_JSON);
+    actual_JSON = JSON.parse(response);
     function loadkey(){
         var x = [];
         for( var i in actual_JSON){
@@ -67,6 +62,7 @@ loadJSON(function(response) {
         return x;
     }
     var arr = loadkey();
+    console.log(actual_JSON);
     //
     for(var i in actual_JSON){
         var text = document.createElement('input');
