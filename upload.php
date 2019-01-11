@@ -13,5 +13,4 @@ if (isset($_POST['upload'])) {
     }
     header('Location: index.html');
 }
-
 ?>
