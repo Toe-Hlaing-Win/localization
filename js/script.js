@@ -1,51 +1,51 @@
 function loadJSON(callback) {
-  var xobj = new XMLHttpRequest();
-  xobj.overrideMimeType("application/json");
-  xobj.open('GET', 'jsondata/en.json', true);
-  xobj.onreadystatechange = function () {
-    if (xobj.readyState == 4 && xobj.status == "200") {
-    callback(xobj.responseText);
-    }
-  };
-  xobj.send(null);
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'jsondata/en.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            callback(xobj.responseText);
+        }
+    };
+    xobj.send(null);
 }
 
 function loadJSONUnicode(callback) {
-  var xobj = new XMLHttpRequest();
-  xobj.overrideMimeType("application/json");
-  xobj.open('GET', 'jsondata/my.json', true);
-  xobj.onreadystatechange = function () {
-    if (xobj.readyState == 4 && xobj.status == "200") {
-    callback(xobj.responseText);
-    }
-  };
-  xobj.send(null);
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'jsondata/my.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            callback(xobj.responseText);
+        }
+    };
+    xobj.send(null);
 }
 
 function loadJSONZawgyi(callback) {
-  var xobj = new XMLHttpRequest();
-  xobj.overrideMimeType("application/json");
-  xobj.open('GET', 'jsondata/zg.json', true);
-  xobj.onreadystatechange = function () {
-    if (xobj.readyState == 4 && xobj.status == "200") {
-    callback(xobj.responseText);
-    }
-  };
-  xobj.send(null);
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'jsondata/zg.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            callback(xobj.responseText);
+        }
+    };
+    xobj.send(null);
 }
 
 //download function
 function download(filename, text) {
-  var element = document.createElement('a');
-  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-  element.setAttribute('download', filename);
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
 
-  element.style.display = 'none';
-  document.body.appendChild(element);
+    element.style.display = 'none';
+    document.body.appendChild(element);
 
-  element.click();
+    element.click();
 
-  document.body.removeChild(element);
+    document.body.removeChild(element);
 }
 
 // to load JSON data to textBox
