@@ -9,27 +9,57 @@
     <link rel="stylesheet" href="style/js/bootstrap.min.js">
     <script src="js/addNewInput.js"></script>
     <script src="js/script.js"></script>
+    <style>
+        body {
+            background-color: aliceblue!important;
+        }
+        nav {
+            background-color: red!important;
+        }
+        textarea {
+            border-radius: 0px;
+            border-color: aquamarine;
+            padding: 6px;
+        }
+
+        .empty-text {
+            border-color: red;
+        }
+
+        .empty-text:invalid {
+            border-color: aquamarine;
+        }
+
+    </style>
 </head>
 <body>
-     <div class="col-12">
-        <div class="row">
-            <div class="col-12">
-                <form>
-                    <div class="form-group">
-                        <form action="upload.php" method="POST" enctype="multipart/form-data">
-                            <input type="file" name='file[]' multiple>
-                            <input type='submit' name='upload'>
-                        </form>
-                    </div>
-                </form>
-            </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <h2>Frontiir Localization</h2>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                </li>
+                <li class="nav-item">
+                </li>
+                <li class="nav-item">
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="upload.php" method="POST" enctype="multipart/form-data">
+                <input class="" type="file" name='file[]' multiple>
+                <input class="btn btn-outline-primary" type='submit' name='upload'>
+            </form>
+        </div>
+    </nav>
+    <div class="col-10 offset-1">
+
+        <div>
+            <span>&nbsp;</span>
         </div>
         <div class="row">
             <div class="col-3">
                 <h3>Key</h3>
                 <div class="form-group">
                     <form id="keys">
-
                     </form>
                 </div>
             </div>
@@ -37,7 +67,6 @@
                 <h3>English</h3>
                 <div class="form-group">
                     <form id="val">
-
                     </form>
                 </div>
             </div>
@@ -45,7 +74,6 @@
                 <h3>Myanmar-Unicode</h3>
                 <div class="form-group">
                     <form id="valUnicode">
-
                     </form>
                 </div>
             </div>
@@ -53,7 +81,6 @@
                 <h3>Myanmar-Zawgyi</h3>
                 <div class="form-group">
                     <form id="valZawgyi">
-
                     </form>
                 </div>
             </div>

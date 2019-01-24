@@ -1,58 +1,57 @@
 function loadJSON(callback) {
-  var xobj = new XMLHttpRequest();
-  xobj.overrideMimeType("application/json");
-  xobj.open('GET', 'jsondata/en.json', true);
-  xobj.onreadystatechange = function () {
-    if (xobj.readyState == 4 && xobj.status == "200") {
-    callback(xobj.responseText);
-    }
-  };
-  xobj.send(null);
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'jsondata/en.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            callback(xobj.responseText);
+        }
+    };
+    xobj.send(null);
 }
 
 function loadJSONUnicode(callback) {
-  var xobj = new XMLHttpRequest();
-  xobj.overrideMimeType("application/json");
-  xobj.open('GET', 'jsondata/my.json', true);
-  xobj.onreadystatechange = function () {
-    if (xobj.readyState == 4 && xobj.status == "200") {
-    callback(xobj.responseText);
-    }
-  };
-  xobj.send(null);
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'jsondata/my.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            callback(xobj.responseText);
+        }
+    };
+    xobj.send(null);
 }
 
 function loadJSONZawgyi(callback) {
-  var xobj = new XMLHttpRequest();
-  xobj.overrideMimeType("application/json");
-  xobj.open('GET', 'jsondata/zg.json', true);
-  xobj.onreadystatechange = function () {
-    if (xobj.readyState == 4 && xobj.status == "200") {
-    callback(xobj.responseText);
-    }
-  };
-  xobj.send(null);
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'jsondata/zg.json', true);
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            callback(xobj.responseText);
+        }
+    };
+    xobj.send(null);
 }
 
 //download function
 function download(filename, text) {
-  var element = document.createElement('a');
-  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-  element.setAttribute('download', filename);
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
 
-  element.style.display = 'none';
-  document.body.appendChild(element);
+    element.style.display = 'none';
+    document.body.appendChild(element);
 
-  element.click();
+    element.click();
 
-  document.body.removeChild(element);
+    document.body.removeChild(element);
 }
 
 // to load JSON data to textBox
 // for key
 loadJSON(function(response) {
     var actual_JSON = {};
-    console.log(actual_JSON);
     actual_JSON = JSON.parse(response);
     function loadkey(){
         var x = [];
@@ -62,24 +61,27 @@ loadJSON(function(response) {
         return x;
     }
     var arr = loadkey();
-    console.log(actual_JSON);
     //
     for(var i in actual_JSON){
-        var text = document.createElement('input');
+        var text = document.createElement('textarea');
         text.type = 'text';
         text.id =  i;
-        text.size = "40";
+        text.rows = 2;
+        text.cols = 39;
+        text.style.margin = "2px";
         text.value = i;
-        console.log("from keys");
         document.getElementById('keys').appendChild(text);
     }
     // for Eng
     for(var i in actual_JSON){
-        var text = document.createElement('input');
+        var text = document.createElement('textarea');
         text.type = 'text';
         text.id =  "eng-" + i;
-        text.size = "40";
+        text.rows = 2;
+        text.cols = 39;
+        text.style.margin = "2px";
         text.value = actual_JSON[i];
+        console.log("from eng")
         document.getElementById('val').appendChild(text);
     }
     // ** For Unicode
@@ -89,29 +91,41 @@ loadJSON(function(response) {
             var jsonUnicode = JSON.parse(response);
             for(var i = 0 ; i < arr.length ; i++){
                 if(jsonUnicode.hasOwnProperty(arr[i])){
-                    var text = document.createElement('input');
+                    var text = document.createElement('textarea');
                     text.type = 'text';
                     text.id = "mmunicode-" + arr[i];
-                    text.size = "40";
+                    text.rows = 2;
+                    text.cols = 39;
+                    text.style.margin = "2px";
+                    if (!jsonUnicode[arr[i]]) {
+                        text.className = "empty-text";
+                    }
                     text.value = jsonUnicode[arr[i]];
+                    console.log("from Uni");
                     document.getElementById('valUnicode').appendChild(text);
                 }
                 else {
-                    var text = document.createElement('input');
+                    var text = document.createElement('textarea');
                     text.type = 'text';
                     text.id = "mmunicode-" + arr[i];
+                    text.className = "empty-text";
+                    text.rows = 2;
+                    text.cols = 39;
+                    text.style.margin = "2px";
                     text.size = "40";
-                    text.value = "";
                     document.getElementById('valUnicode').appendChild(text);
                 }
             }
         });
     } catch {
         for(var i in actual_JSON){
-            var text = document.createElement('input');
+            var text = document.createElement('textarea');
             text.type = 'text';
             text.id =  "mmunicode-" + i;
-            text.size = "40";
+            text.className = "empty-text";
+            text.rows = 2;
+            text.cols = 39;
+            text.style.margin = "2px";
             text.value = "";
             document.getElementById('val').appendChild(text);
         }
@@ -122,30 +136,43 @@ loadJSON(function(response) {
             var jsonZawgyi = JSON.parse(response);
             for(var i = 0 ; i < arr.length ; i++){
                 if(jsonZawgyi.hasOwnProperty(arr[i])){
-                    var text = document.createElement('input');
+                    var text = document.createElement('textarea');
                     text.type = 'text';
                     text.id = "mmzawgyi-" + arr[i];
-                    text.size = "40";
+                    text.rows = 2;
+                    text.cols = 39;
+                    text.style.margin = "2px";
+                    if (!jsonZawgyi[arr[i]]) {
+                        text.className = "empty-text";
+                    }
+                    console.log("from Zawgi");
                     text.value = jsonZawgyi[arr[i]];
                     document.getElementById('valZawgyi').appendChild(text);
                 }
                 else {
-                    var text = document.createElement('input');
-                    text.class = "hello";
+                    var text = document.createElement('textarea');
                     text.type = 'text';
                     text.id = "mmzawgyi-" + arr[i];
-                    text.size = "40";
+                    text.class = ("alert");
+                    text.rows = 2;
+                    text.cols = 39;
+                    text.style.margin = "2px";
                     text.value = "";
+                    text.className = "empty-text";
                     document.getElementById('valZawgyi').appendChild(text);
                 }
             }
         });
     } catch {
         for(var i in actual_JSON){
-            var text = document.createElement('input');
+            console.log('here');
+            var text = document.createElement('textarea');
             text.type = 'text';
             text.id =  "mmzawgyi-" + i;
-            text.size = "40";
+            text.className = "empty-text";
+            text.rows = 2;
+            text.cols = 39;
+            text.style.margin = "2px";
             text.value = "";
             document.getElementById('val').appendChild(text);
         }
@@ -202,13 +229,16 @@ loadJSON(function(response) {
         } catch { console.log("Can't Save Zawgyi JSON file");}
     });
 
+    // Add new input key.
     document.getElementById('btnAdd').onclick = function (e) {
         var keyName = document.getElementById('key-name').value;
         // for Key
-        var text = document.createElement('input');
+        var text = document.createElement('textarea');
         text.type = 'text';
         text.id =  keyName;
-        text.size = "40";
+        text.rows = 2;
+        text.cols = 39;
+        text.style.margin = "2px";
         text.value = keyName;
         document.getElementById('keys').appendChild(text);
         var obj = {};
@@ -216,26 +246,32 @@ loadJSON(function(response) {
         Object.assign(actual_JSON, obj);
 
         // for Eng
-        var text = document.createElement('input');
+        var text = document.createElement('textarea');
         text.type = 'text';
         text.id =  "eng-" + keyName;
-        text.size = "40";
+        text.rows = 2;
+        text.cols = 39;
+        text.style.margin = "2px";
         text.value = keyName;
         document.getElementById('val').appendChild(text);
 
         // for Unicode
-        var text = document.createElement('input');
+        var text = document.createElement('textarea');
         text.type = 'text';
         text.id =  "mmunicode-" + keyName;
-        text.size = "40";
+        text.rows = 2;
+        text.cols = 39;
+        text.style.margin = "2px";
         text.value = "";
         document.getElementById('valUnicode').appendChild(text);
 
         // for Zawgyi
-        var text = document.createElement('input');
+        var text = document.createElement('textarea');
         text.type = 'text';
         text.id =  "mmzawgyi-" + keyName;
-        text.size = "40";
+        text.rows = 2;
+        text.cols = 39;
+        text.style.margin = "2px";
         text.value = "";
         document.getElementById('valZawgyi').appendChild(text);
 
